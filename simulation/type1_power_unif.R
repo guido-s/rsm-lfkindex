@@ -159,7 +159,9 @@ d1$rank.sign.adj <- 1L * (d1$stat.rank < d1$rank_q0.05)
 d1$thompson.sign.adj <- 1L * (d1$stat.thompson < d1$thompson_q0.05)
 #
 d1 %<>% select(-(TE.common:pval.random)) %>% select(-(Q:pval.Q)) %>%
-  select(-pval.egger, -pval.rank, -pval.thompson)
+  select(-pval.egger, -pval.rank, -pval.thompson) %>%
+  select(-(lfkindex_type1:lfkindex_crit_t)) %>%
+  select(-(lfkindex_q0.05:thompson_q0.05))
 d1 %<>% relocate(ia, .after = last_col())
 #
 attr(d1, "nsim") <- nsim
@@ -246,7 +248,9 @@ d2$rank.sign.adj <- 1L * (d2$stat.rank < d2$rank_q0.05)
 d2$thompson.sign.adj <- 1L * (d2$stat.thompson < d2$thompson_q0.05)
 #
 d2 %<>% select(-(TE.common:pval.random)) %>% select(-(Q:pval.Q)) %>%
-  select(-pval.egger, -pval.rank, -pval.thompson)
+  select(-pval.egger, -pval.rank, -pval.thompson) %>%
+  select(-(lfkindex_type1:lfkindex_crit_t)) %>%
+  select(-(lfkindex_q0.05:thompson_q0.05))
 d2 %<>% relocate(ia, .after = last_col())
 #
 attr(d2, "nsim") <- nsim
@@ -262,7 +266,6 @@ type1_unif <- d0
 power_unif_rho0.5 <- d1
 power_unif_rho0.9 <- d2
 #
-save(type1_unif,
-     power_unif_rho0.5,
-     power_unif_rho0.9,
-     file = "results/type1_power_unif.rda")
+save(type1_unif, file = "type1_unif.rda")
+save(power_unif_rho0.5, file = "power_unif_rho0.5.rda")
+save(power_unif_rho0.9, file = "power_unif_rho0.9.rda")
