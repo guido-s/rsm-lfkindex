@@ -38,7 +38,9 @@ pnorm(metabias(m.woody, method = "Begg")$statistic, lower = FALSE)
 # (2a) Simulations based on sample size distribution by Schwarzer et al. (2002)
 #
 
-load("type1_power_Schwarzer2002.rda")
+load("type1_Schwarzer2002.rda")
+load("power_Schwarzer2002_rho0.5.rda")
+load("power_Schwarzer2002_rho0.9.rda")
 
 #
 # Use of REML or DerSimonian-Laird estimator in meta-analysis
@@ -74,19 +76,21 @@ with(power_Schwarzer2002_rho0.9, table(method.tau, method.tau.thompson))
 nsim <- attr(type1_Schwarzer2002, "nsim")
 #
 round(100 * with(type1_Schwarzer2002,
-                 summary(by(lfk.minor, ia, sum))) / nsim, 1)
+                 summary(by(lfk.sign, ia, sum))) / nsim, 1)
 
 #
 # Ten smallest numbers of significant results for LFK index
 #
 
-with(type1_Schwarzer2002, table(by(lfk.minor, ia, sum)))[1:10]
+with(type1_Schwarzer2002, table(by(lfk.sign, ia, sum)))[1:10]
 
 #
 # (2b) Simulations based on uniform distribution
 #
 
-load("type1_power_unif.rda")
+load("type1_unif.rda")
+load("power_unif_rho0.5.rda")
+load("power_unif_rho0.9.rda")
 
 #
 # Use of REML or DerSimonian-Laird estimator in meta-analysis
@@ -121,13 +125,13 @@ with(power_unif_rho0.9, table(method.tau, method.tau.thompson))
 
 nsim <- attr(type1_unif, "nsim")
 #
-round(100 * with(type1_unif, summary(by(lfk.minor, ia, sum))) / nsim, 1)
+round(100 * with(type1_unif, summary(by(lfk.sign, ia, sum))) / nsim, 1)
 
 #
 # Ten smallest numbers of significant results for LFK index
 #
 
-with(type1_unif, table(by(lfk.minor, ia, sum)))[1:10]
+with(type1_unif, table(by(lfk.sign, ia, sum)))[1:10]
 
 
 #

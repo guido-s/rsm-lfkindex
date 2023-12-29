@@ -1,19 +1,3 @@
-#point_lines <- function(x, test, xvals, nsim, pch, col) {
-#  j <- 0
-#  for (i in c(10, 20, 50, 100)) {
-#    n.i <- length(xvals) / 4
-#    dat.i <- subset(x, x$N_studies == i)
-#    xvals.i <- xvals[j * n.i + seq_len(n.i)]
-#    #
-#    points(xvals.i, by(x[[test]], x$ia, sum)[xvals.i] / nsim, pch = pch,
-#           type = "b", col = col)
-#    #
-#    j <- j + 1
-#  }
-#  #
-#  invisible(NULL)
-#}
-
 point_lines <- function(x, test, xvals, nsim, pch, col) {
   k <- 0
   for (i in c(10, 20, 50, 100)) {
@@ -120,7 +104,7 @@ nestedloop <- function(x,
   #
   plot(xvals, by(x$lfk.sign, x$ia, sum) / nsim,
        axes = FALSE, ylim = ylim,
-       xlab = "Scenarios", ylab = "Proportion",
+       xlab = xlab, ylab = ylab,
        type = "n")
   #
   if (absrho == 0)
@@ -294,7 +278,7 @@ ecdfs_distr <- function(x, test, text = "", sub = "",
 nestedloop_I2 <- function(x,
                           ylim = c(0, 1),
                           createpdf = FALSE,
-                          xlab = "Scenarios", ylab = "Proportion",
+                          xlab = "Scenarios", ylab = "Median of I2 statistic",
                           main = NULL, sub = FALSE,
                           width = 10, height = 8,
                           supplement = FALSE,
@@ -359,7 +343,7 @@ nestedloop_I2 <- function(x,
   #
   plot(xvals, by(x$I2, x$ia, median),
        axes = FALSE, ylim = ylim,
-       xlab = "Scenarios", ylab = "Proportion",
+       xlab = xlab, ylab = ylab,
        type = "n")
   #
   #

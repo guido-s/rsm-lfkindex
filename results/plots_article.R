@@ -32,7 +32,9 @@ dev.off()
 
 source("funcs_plot.R")
 
-load("type1_power_Schwarzer2002.rda")
+load("type1_Schwarzer2002.rda")
+load("power_Schwarzer2002_rho0.5.rda")
+load("power_Schwarzer2002_rho0.9.rda")
 
 #
 # Figures 2, 4 and 5
@@ -59,34 +61,31 @@ nestedloop(power_Schwarzer2002_rho0.5, createpdf = TRUE,
 # Supplement
 #
 
+nestedloop_I2(type1_Schwarzer2002, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS1.pdf")
+nestedloop_I2(power_Schwarzer2002_rho0.5, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS2.pdf")
+nestedloop_I2(power_Schwarzer2002_rho0.9, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS3.pdf")
+
 nestedloop(power_Schwarzer2002_rho0.9, createpdf = TRUE,
            legend = "bottomright",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS7.pdf")
 
 nestedloop(power_Schwarzer2002_rho0.9, createpdf = TRUE,
            legend = "bottomright",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
            type = "inflated",
-           supplement = TRUE)
-
-nestedloop(power_Schwarzer2002_rho0.5, createpdf = TRUE,
-           legend = "bottomright",
-           egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
-           type = "adjusted",
-           supplement = TRUE)
-
-nestedloop(power_Schwarzer2002_rho0.9, createpdf = TRUE,
-           legend = "bottomright",
-           egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
-           type = "adjusted",
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS10.pdf")
 
 d0_Schwarzer2002 <- subset(type1_Schwarzer2002, tau == 0)
 d1_Schwarzer2002 <- subset(type1_Schwarzer2002, tau == 0.25)
 d2_Schwarzer2002 <- subset(type1_Schwarzer2002, tau == 0.5)
 
-pdf("supplement/ecdf_Schwarzer2002.pdf", width = 10, height = 8)
+pdf("supplement/FigureS13.pdf", width = 10, height = 8)
 #
 par(mfrow = c(2, 2))
 #
@@ -104,9 +103,19 @@ ecdfs(d0_Schwarzer2002, stat.thompson, text = "Thompson-Sharp test", step = 50,
 #
 dev.off()
 
-nestedloop_I2(type1_Schwarzer2002, createpdf = TRUE, supplement = TRUE)
-nestedloop_I2(power_Schwarzer2002_rho0.5, createpdf = TRUE, supplement = TRUE)
-nestedloop_I2(power_Schwarzer2002_rho0.9, createpdf = TRUE, supplement = TRUE)
+nestedloop(power_Schwarzer2002_rho0.5, createpdf = TRUE,
+           legend = "bottomright",
+           egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
+           type = "adjusted",
+           supplement = TRUE,
+           filename = "FigureS14.pdf")
+
+nestedloop(power_Schwarzer2002_rho0.9, createpdf = TRUE,
+           legend = "bottomright",
+           egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
+           type = "adjusted",
+           supplement = TRUE,
+           filename = "FigureS15.pdf")
 
 
 #
@@ -115,7 +124,9 @@ nestedloop_I2(power_Schwarzer2002_rho0.9, createpdf = TRUE, supplement = TRUE)
 #
 #
 
-load("type1_power_unif.rda")
+load("type1_unif.rda")
+load("power_unif_rho0.5.rda")
+load("power_unif_rho0.9.rda")
 
 #
 # Figure 3
@@ -157,40 +168,49 @@ dev.off()
 # Supplement
 #
 
+nestedloop_I2(type1_unif, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS4.pdf")
+nestedloop_I2(power_unif_rho0.5, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS5.pdf")
+nestedloop_I2(power_unif_rho0.9, createpdf = TRUE, supplement = TRUE,
+              filename = "FigureS6.pdf")
+
 nestedloop(power_unif_rho0.5, createpdf = TRUE,
            legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS8.pdf")
 
 nestedloop(power_unif_rho0.9, createpdf = TRUE,
            legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS9.pdf")
 
 nestedloop(power_unif_rho0.5, createpdf = TRUE,
            legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
            type = "inflated",
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS11.pdf")
 
 nestedloop(power_unif_rho0.9, createpdf = TRUE,
            legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
            type = "inflated",
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS12.pdf")
 
 nestedloop(power_unif_rho0.5, createpdf = TRUE,
-           legend = "bottomright",
+           legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
            type = "adjusted",
-           supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS16.pdf")
 
 nestedloop(power_unif_rho0.9, createpdf = TRUE,
-           legend = "bottomright",
+           legend = "topleft",
            egger = TRUE, rank = TRUE, thompson = TRUE, lfk = TRUE,
            type = "adjusted",
-           supplement = TRUE)
-
-nestedloop_I2(type1_unif, createpdf = TRUE, supplement = TRUE)
-nestedloop_I2(power_unif_rho0.5, createpdf = TRUE, supplement = TRUE)
-nestedloop_I2(power_unif_rho0.9, createpdf = TRUE, supplement = TRUE)
+           supplement = TRUE,
+           filename = "FigureS17.pdf")
